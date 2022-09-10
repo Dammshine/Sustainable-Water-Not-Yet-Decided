@@ -1,79 +1,164 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="index.css">
+<meta charset=utf-8 />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+<div>
+  <h1 style="color: white;text-align:center;"> Water Demand, Usage, Quality Map </h1>
+  <h3 style="color: #ee8a65;text-align:center;">Ensure the availability and sustainable management of water and sanitation for all</h3>
+  <button style="margin: 5px;">Dashboard</button>
+</div>
 </head>
-<body>
-
-<h1>The Water Quality App</h1>
-<p>Ensure the availability and sustainable management of water and sanitation for all</p>
-<div class="dropdown">
-    <button class="dropbtn">Mode</button>
-    <div class="dropdown-content">
-      <a href="#">Auto-rotate</a>
-      <a href="#">Draggable</a>
-    </div>
-  </div>
-<div>
-    <canvas
-    id="cobe"
-    style="width: 500px; height: 500px"
-    width="1000"
-    height="1000"
-    ></canvas>
-    <script type="module">
-        import createGlobe from 'https://cdn.skypack.dev/cobe'
-      
-        let phi = 0
-        let canvas = document.getElementById("cobe")
-      
-        const globe = createGlobe(canvas, {
-          devicePixelRatio: 2,
-          width: 1000,
-          height: 1000,
-          phi: 0,
-          theta: 0,
-          dark: 0.95,
-          diffuse: 2.5,
-          scale: 1,
-          mapSamples: 30000,
-          mapBrightness: 12,
-          baseColor: [0.29, 0.85, 0.18],
-          markerColor: [1, 0.5, 1],
-          glowColor: [0.52, 1, 0.87],
-          offset: [0, 0],
-          markers: [
-            { location: [37.7595, -122.4367], size: 0.03 },
-            { location: [40.7128, -74.006], size: 0.1 },
-          ],
-          onRender: (state) => {
-            // Called on every animation frame.
-            // `state` will be an empty object, return updated params.
-            state.phi = phi
-            phi += 0.005
-          },
-        })
-      </script>
-</div>
-
-<div class="slidecontainer">
-    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-    <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value; // Display the default slider value
-
-        // Update the current slider value (each time you drag the slider handle)
-        slider.oninput = function() {
-        output.innerHTML = this.value;
-        }
-    </script>
-</div>
-
-<div>
-    <button id="donatebtn">Donate</button>
-</div>
-
+<body style="background-color: #287AB8;">
+  <style>
+    .mapboxgl-popup {
+    max-width: 400px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+  </style>
+  <div id='map' style='width: 100%; height: 800px;'></div>
+  <script>
+  // TO MAKE THE MAP APPEAR YOU MUST
+  // ADD YOUR ACCESS TOKEN FROM
+  // https://account.mapbox.com
+  mapboxgl.accessToken = 'pk.eyJ1IjoiamlhcWl6aHUyMiIsImEiOiJjbDd2dnphNWQwZm1pM29vNWxyZTY2ejI4In0.i07H2AQP9MbY6oDAJjJ3xw';
+  const map = new mapboxgl.Map({
+  container: 'map', // container ID
+  style: 'mapbox://styles/mapbox/streets-v11', // style URL
+  zoom: 1, // starting zoom
+  center: [130, -28], // starting position [lng, lat]
+  projection: 'globe' // display the map as a 3D globe
+  });
+  map.on('style.load', () => {
+    map.setFog({}); // Set the default atmosphere style
+    map.addSource('places', {
+      'type': 'geojson',
+      'data': {
+      'type': 'FeatureCollection',
+      'features': [
+      {
+      'type': 'Feature',
+      'properties': {
+      'description':
+      '<strong>Amazon Office (2 Market St)</strong><p>Water Demand: 300 Litres/Day</p><p>Water Usage: 600 Litres/Day</p><p>Water Quality Today: Good</p>'
+      },
+      'geometry': {
+      'type': 'Point',
+      'coordinates': [151.20464033400595, -33.870630145867096]
+      }
+      },
+      {
+      'type': 'Feature',
+      'properties': {
+      'description':
+      '<strong>Sydney Tower</strong><p>Water Demand: 500 Litres/Day</p><p>Water Usage: 450 Litres/Day</p><p>Water Quality Today: Good</p>'
+      },
+      'geometry': {
+      'type': 'Point',
+      'coordinates': [151.2089585995982, -33.87053416797401]
+      }
+      },
+      {
+      'type': 'Feature',
+      'properties': {
+      'description':
+      '<strong>Meriton Suites</strong><p>Water Demand: 1000 Litres/Day</p><p>Water Usage: 850 Litres/Day</p><p>Water Quality Today: Good</p>'
+      },
+      'geometry': {
+      'type': 'Point',
+      'coordinates': [151.20436700058508, -33.872347113306056]
+      }
+      },
+      {
+      'type': 'Feature',
+      'properties': {
+      'description':
+      '<strong>Hilton Sydney</strong><p>Water Demand: 1000 Litres/Day</p><p>Water Usage: 1050 Litres/Day</p><p>Water Quality Today: Good</p>'
+      },
+      'geometry': {
+      'type': 'Point',
+      'coordinates': [151.2076586865502, -33.87184701023295]
+      }
+      },
+      {
+      'type': 'Feature',
+      'properties': {
+      'description':
+      "<strong>McKinsey & Company</strong><p>Water Demand: 350 Litres/Day</p><p>Water Usage: 300 Litres/Day</p><p>Water Quality Today: Good</p>"
+      },
+      'geometry': {
+      'type': 'Point',
+      'coordinates': [151.21188985152958, -33.86490912114528]
+      }
+      },
+      {
+      'type': 'Feature',
+      'properties': {
+      'description':
+      '<strong>Google Workplace 6</strong><p>Water Demand: 500 Litres/Day</p><p>Water Usage: 500 Litres/Day</p><p>Water Quality Today: Good</p>'
+      },
+      'geometry': {
+      'type': 'Point',
+      'coordinates': [151.195844213461, -33.8666725962896]
+      }
+      },
+      {
+      'type': 'Feature',
+      'properties': {
+      'description':
+      '<strong>Amazon Web Services Australia Pty.Ltd.</strong><p>Water Demand: 870 Litres/Day</p><p>Water Usage: 650 Litres/Day</p><p>Water Quality Today: Good</p>'
+      },
+      'geometry': {
+      'type': 'Point',
+      'coordinates': [151.2078375624942, -33.87033793027141]
+      }
+      },
+      ]}});
+      // Add a layer showing the places.
+      map.addLayer({
+      'id': 'places',
+      'type': 'circle',
+      'source': 'places',
+      'paint': {
+      'circle-color': '#4264fb',
+      'circle-radius': 6,
+      'circle-stroke-width': 2,
+      'circle-stroke-color': '#ffffff'
+      }
+      });
+       
+      // Create a popup, but don't add it to the map yet.
+      const popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+      });
+       
+      map.on('mouseenter', 'places', (e) => {
+      // Change the cursor style as a UI indicator.
+      map.getCanvas().style.cursor = 'pointer';
+       
+      // Copy coordinates array.
+      const coordinates = e.features[0].geometry.coordinates.slice();
+      const description = e.features[0].properties.description;
+       
+      // Ensure that if the map is zoomed out such that multiple
+      // copies of the feature are visible, the popup appears
+      // over the copy being pointed to.
+      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+      }
+       
+      // Populate the popup and set its coordinates
+      // based on the feature found.
+      popup.setLngLat(coordinates).setHTML(description).addTo(map);
+      });
+       
+      map.on('mouseleave', 'places', () => {
+      map.getCanvas().style.cursor = '';
+      popup.remove();
+      });
+  });
+  </script>
 </body>
 </html>
-
