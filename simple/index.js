@@ -11,17 +11,22 @@ const map = new mapboxgl.Map({
 });
    
 map.on('load', () => {
+  /*
   map.addSource('radar', {
     'type': 'image',
     'url': 'https://docs.mapbox.com/mapbox-gl-js/assets/radar.gif',
     'coordinates': [
-      [-80.425, 46.437],
+      [-33.863, 46.437],
       [-71.516, 46.437],
       [-71.516, 37.936],
       [-80.425, 37.936]
     ]
+  });*/
+  map.flyTo({
+    center: [33.86, 90.20],
+    essential: true // this animation is considered essential with respect to prefers-reduced-motion
   });
-  
+
   map.addLayer({
     id: 'radar-layer',
     'type': 'raster',
@@ -31,3 +36,9 @@ map.on('load', () => {
     }
   });
 });
+
+map.flyTo({
+  center: [33.86, 90.20],
+  essential: true // this animation is considered essential with respect to prefers-reduced-motion
+});
+

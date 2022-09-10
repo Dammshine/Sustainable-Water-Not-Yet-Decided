@@ -6,11 +6,45 @@
     transition: ease all .3s;
 }
 
-.map-container {
-    height: 1200px;
+body {
+    background-color: black;
+    color: aliceblue;
+    margin: 3%;
+    text-align: center;
+}
+
+.header-text {
+    color: aliceblue;
+}
+
+i {
+    color: aliceblue;
+}
+
+
+#html, #body, #map-container {
+    height: 100%;
+}
+
+#map {
+    height: 80%;
+}
+
+.map-section {
+    height: 660px;
     width: 1200px;
-    
-    padding: 20px;
+    margin: 10px 10px;
     border: 2px solid black;
-    
+}
+
+.header-section {
+    height: 60px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    align-items: center;
+    justify-content: space-between;
 }
