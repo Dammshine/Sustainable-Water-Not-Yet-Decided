@@ -1,4 +1,4 @@
-2022 WIT Hackathon Prompt
+# 2022 WIT Hackathon Prompt #
 
 
 Technology is defined as the application of scientific knowledge for practical purposes. For this reason we look to challenge your technical abilities to create innovative practical solutions to tackle this year’s 2022 Google X AWS Hackathon. With an ever changing world and a demand for more resources, sometimes we overlook the simple things. This year’s hackathon will be centered around Goal 6 of the 2030 Agenda for Sustainable Development Summit in New York in September 2015. 
@@ -18,3 +18,6 @@ Some  possible technologies you can use are:
 Artificial Intelligence (AI)
 Advanced Analytics
 Data Visualisation (Tableau)
+
+# Submission #
+Please refer to folder *submission*.
