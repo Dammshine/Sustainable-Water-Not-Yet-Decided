@@ -7,7 +7,7 @@ The summit was an opportunity that allowed Australia to actively participate in 
 
 Which is why we challenge you to join us at the Google X AWS Hackathon and create innovative solutions to further the goal of ensuring the availability and sustainable management of water and sanitation for all members of society.
 
-Challenge - Summary
+## Challenge - Summary ##
 
 Provide a way Australian businesses can sustainably future proof themselves and simultaneously address one or more of the challenges that Goal 6 addresses such as sustainable management of water and sanitation for all members of society. 
 
