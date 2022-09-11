@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.10.0/mapbox-gl.css' rel='stylesheet' />
+<link href='style.css' rel='stylesheet' />
+<div>
+  <h1 style="color: white;text-align:center;"> My Dashboard </h1>
+  <h3 style="color: #90EE90;text-align:center;">Let’s save the water together.</h3>
+  <a href="map.html" style="margin: 10px;">World Map</a>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Demand', 'Usage'],
+          ['2019',  1000,   800],
+          ['2020',  800,    1050],
+          ['2021',  1000,   950],
+          ['2022',  950,    600]
+        ]);
+
+        var options = {
+          curveType: 'function',
+          legend: { position: 'bottom' },
+          chartArea: {margin: 0}
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+
+        var data2 = google.visualization.arrayToDataTable([
+          ['Year', 'Predicted Usage'],
+          ['2023',  900],
+          ['2024',  850],
+          ['2025',  950],
+          ['2026',  800]
+        ]);
+        var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
+
+        chart2.draw(data2, options);
+
+        //pie chart
+        var data3 = google.visualization.arrayToDataTable([
+          ['Usage', 'Litres per Day'],
+          ['Kitchen/Dishwashing',     90],
+          ['Female Bathrooms',      150],
+          ['Male Bathrooms',  120],
+          ['Coffee Machines', 60],
+          ['Sanitary', 100],
+          ['Cooling & Heating', 50]
+        ]);
+
+        var options3 = {
+          title: 'My Water Usage Breakdown'
+        };
+
+        var chart3 = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart3.draw(data3, options3);
+      }
+    </script>
+</head>
+<body style="background-color: #287AB8; color: white; padding:0;">
+<div style="margin: 10px; display:flex; flex-direction:row; flex-wrap:wrap;">
+    <div style="order: 1; width: 100%; position: relative; justify-content:center;">
+        <h2>Water Usage Summary</h2>
+        <h3>Date: 11/09/2022; Current Water Usage: 600 L</h3>
+        <div style="display: flex; flex-direction: row; height: 350px; width: 100%;">
+            <div style="order:1; " id="curve_chart"></div>
+            <div style="order:2;" id="piechart"></div>
+        </div>
+    </div>
+    <div style="order: 2; width: 50%; position: relative; justify-content:center;">
+        <h2>Future Usage Forecast</h2>
+        <div id="curve_chart2" style="width: 450px; height: 300px;"></div>
+    </div>
+    <div style="order: 3; width: 50%">
+        <h2>Monitor Your Water Usage</h2>
+        <table>
+            <tr>
+              <th>Toilet Location</th>
+              <th>No. of Flushes</th>
+              <th>Cleaning Required</th>
+            </tr>
+            <tr>
+              <td>Level 8 Female Toilet 1</td>
+              <td>30</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+            <td>Level 8 Female Toilet 2</td>
+            <td>15</td>
+            <td>No</td>
+            </tr>
+            <tr>
+                <td>Level 8 Female Toilet 3</td>
+                <td>35</td>
+                <td>Yes</td>
+              </tr>
+              <tr>
+                <td>Level 8 Female Toilet 4</td>
+                <td>25</td>
+                <td>No</td>
+              </tr>
+          </table>
+          <br>
+          <table>
+            <tr>
+              <th>Kitchen Facilities</th>
+              <th>Water Usage Today</th>
+              <th>Over-usage?</th>
+            </tr>
+            <tr>
+              <td>Kitchen Sink 1</td>
+              <td>15</td>
+              <td>No</td>
+            </tr>
+            <tr>
+            <td>Kitchen Sink 2</td>
+            <td>20</td>
+            <td>No</td>
+            </tr>
+            <tr>
+                <td>Coffee Machine 1</td>
+                <td>35</td>
+                <td>20%</td>
+              </tr>
+              <tr>
+                <td>Coffee Machine 2</td>
+                <td>0</td>
+                <td>No</td>
+              </tr>
+          </table>
+    </div>
+    <div style="order: 4; width: 50%">
+        <h2>Guide For Saving Water</h2>
+        <h3>1. Your water usage has meet 60% of the water demand in 2022. Keep it up!</h3>
+        <h3>2. You have saved 30 L in the past months. </h3>
+        <h3>3. More water can be saved from using bathrooms this week. </h3>
+    </div>
+    <div style="order: 5; width: 50%">
+        <h2>Potential Improvement</h2> 
+        <h3>The Annual Sustainability Report will be available on 31st Dec 2022. The 2021 Sustainability Report can be downloaded from <a href="https://sustainability.aboutamazon.com/2021-sustainability-report.pdf">here</a>.</h3> 
+        
+    </div>
+</div>
+</body>
+<hr>
+<footer style="text-align: center;">
+    <p>Developer: Not Yet Decided</p>
+    <p>Sponsors: </p>
+    <img src="amazon-logo.jpeg" alt="Amazon Logo" width="150">
+    <img src="google-logo.jpg" alt="Amazon Logo" width="150">
+    <img src="mckinsey-logo.png" alt="Amazon Logo" width="150">
+</footer>
+</html>
